@@ -8,6 +8,15 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   transpilePackages: ["@morfoos/core", "@morfoos/morfoos-os"],
+  images: {
+    qualities: [75, 92],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
   experimental: {
     optimizePackageImports: ["@morfoos/core"],
   },

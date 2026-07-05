@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Button from "./Button";
+import Logo from "./Logo";
 
 const NAV_LINKS = [
-  { label: "Huolto", href: "#" },
-  { label: "Meistä", href: "#" },
-  { label: "Ota yhteyttä", href: "#" },
+  { label: "Valikoima", href: "#uusimmat" },
+  { label: "Palvelut", href: "#palvelut" },
+  { label: "Yhteystiedot", href: "#contact" },
 ] as const;
 
 const navLinkClass =
@@ -16,7 +17,7 @@ const navLinkClass =
   "drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]";
 
 const navLinkScrolledClass =
-  "whitespace-nowrap text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground)]/80 transition-colors hover:text-[var(--color-primary)]";
+  "whitespace-nowrap text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground)]/80 transition-colors hover:text-[var(--color-foreground)]";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,15 +36,10 @@ export default function Header() {
   }, [menuOpen]);
 
   const logo = (
-    <Link
-      href="#"
-      className="inline-flex items-center no-underline"
+    <Logo
+      priority
       onClick={() => setMenuOpen(false)}
-    >
-      <span className="font-heading text-lg font-bold tracking-tight text-[var(--color-primary)] md:text-xl">
-        Matinkylän Auto
-      </span>
-    </Link>
+    />
   );
 
   return (
@@ -52,27 +48,16 @@ export default function Header() {
         className={[
           "w-full transition-[background-color,backdrop-filter,border-color,box-shadow] duration-300",
           scrolled
-            ? "border-b border-black/10 bg-white/95 backdrop-blur-md"
+            ? "border-b border-[var(--color-border)] bg-white/95 backdrop-blur-md"
             : "border-b border-transparent bg-transparent",
         ].join(" ")}
       >
-        {/* Desktop: split — logo on white (left), nav on video (right) */}
         <div className="mx-auto hidden h-16 w-full md:grid md:grid-cols-[52%_1fr] md:items-center lg:h-[4.5rem] lg:grid-cols-[58%_1fr]">
           <div className="flex min-w-0 items-center px-6 lg:px-8 2xl:px-20">{logo}</div>
 
           <div className="relative flex min-w-0 items-center justify-end gap-4 px-6 lg:gap-6 lg:px-8 2xl:px-12">
-            {!scrolled ? (
-              <div
-                className="pointer-events-none"
-                aria-hidden
-              />
-            ) : null}
-
             <nav
-              className={[
-                "relative z-10 flex w-fit flex-nowrap items-center justify-end gap-4 whitespace-nowrap lg:gap-7",
-                scrolled ? "gap-4" : "",
-              ].join(" ")}
+              className="relative z-10 flex w-fit flex-nowrap items-center justify-end gap-4 whitespace-nowrap lg:gap-7"
               aria-label="Päävalikko"
             >
               {NAV_LINKS.map((item, i) => (
@@ -95,20 +80,19 @@ export default function Header() {
               ))}
 
               <Button
-                href="#"
+                href="#vaihto"
                 variant="primary"
                 className={[
-                  "relative z-10 shrink-0 transition-all duration-300 hover:scale-105",
+                  "relative z-10 shrink-0 px-6 py-3 text-xs uppercase tracking-wide",
                   scrolled ? "" : "drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]",
                 ].join(" ")}
               >
-                Pyydä tarjous
+                Pyydä vaihtotarjous
               </Button>
             </nav>
           </div>
         </div>
 
-        {/* Mobile */}
         <div className="mx-auto flex h-16 items-center justify-between gap-4 px-5 md:hidden">
           {logo}
           <button
@@ -117,7 +101,7 @@ export default function Header() {
             className={[
               "grid size-10 place-items-center rounded-xl border transition",
               scrolled
-                ? "border-black/10 bg-white text-[var(--color-primary)]"
+                ? "border-[var(--color-border)] bg-white text-[var(--color-foreground)]"
                 : "border-white/20 bg-black/20 text-white backdrop-blur-sm",
             ].join(" ")}
             aria-label={menuOpen ? "Sulje valikko" : "Avaa valikko"}
@@ -128,7 +112,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className={[
           "fixed inset-0 z-[60] md:hidden",
@@ -155,19 +138,19 @@ export default function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="rounded-lg px-3 py-3 text-sm font-semibold uppercase tracking-wide text-[var(--color-foreground)] hover:bg-[var(--color-secondary)]"
+                className="rounded-[10px] px-3 py-3 text-sm font-semibold uppercase tracking-wide text-[var(--color-foreground)] hover:bg-[var(--color-secondary)]"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
             <Button
-              href="#"
-              variant="secondary"
-              className="mt-4 w-full border-[var(--color-primary)] text-[var(--color-primary)]"
+              href="#vaihto"
+              variant="primary"
+              className="mt-4 w-full"
               onClick={() => setMenuOpen(false)}
             >
-              Pyydä tarjous
+              Pyydä vaihtotarjous
             </Button>
           </nav>
         </aside>

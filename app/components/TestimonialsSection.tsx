@@ -1,10 +1,17 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IconStar } from "./icons";
+import {
+  sectionEyebrowClass,
+  sectionH2CenterClass,
+  sectionLedeCenterClass,
+} from "../lib/sectionTypography";
 
 const REDUCE_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const LG_QUERY = "(min-width: 1024px)";
+const SM_QUERY = "(min-width: 640px)";
 
 function subscribeMediaQuery(query: string, cb: () => void) {
   const m = window.matchMedia(query);
@@ -20,46 +27,105 @@ function getServerSnapshot() {
   return false;
 }
 
+function useVisibleCount() {
+  const isLg = useSyncExternalStore(
+    (cb) => subscribeMediaQuery(LG_QUERY, cb),
+    () => getSnapshot(LG_QUERY),
+    getServerSnapshot,
+  );
+  const isSm = useSyncExternalStore(
+    (cb) => subscribeMediaQuery(SM_QUERY, cb),
+    () => getSnapshot(SM_QUERY),
+    getServerSnapshot,
+  );
+
+  if (isLg) return 3;
+  if (isSm) return 2;
+  return 1;
+}
+
+const GOOGLE_RATING = "4,7";
+const GOOGLE_REVIEW_COUNT = 27;
+
 const TESTIMONIALS = [
   {
-    text: "Loistava palvelu ja rehellinen arvio. Aamulla varaus, auto valmis iltapäivällä. Suosittelen.",
-    author: "Mika L.",
-    source: "Google-arvostelu",
+    text: "Suosittelen kaikille Valkeakosken Koskiautoa, jos on autokaupoille asiaa. Asiakaspalvelu oli maanläheistä ja kaikin puolin loistavaa. Itse tuote eli ostamani auto vastasi täysin netissä ilmoitettuja tietoja ja auton hinta/rahoitus autoon tuli edulliseksi. Hinta/laatu-suhde on tässä liikkeessä asiakasystävällinen!",
+    author: "Sami Koski",
   },
   {
-    text: "Ammattitaitoista työtä ja selkeä viestintä koko ajan. Hinta piti kutinsa — tulen varmasti uudelleen.",
-    author: "Laura K.",
-    source: "Google-arvostelu",
+    text: "Omasta kokemuksesta voin kertoa, että asiat sujuivat niin hyvin ja nopeasti aivan kuten oltiin puhelimessa sovittu! Iloinen ja asiantunteva henkilökunta!",
+    author: "Jari Salonen",
   },
   {
-    text: "Paras korjaamo pitkään aikaan. Mukava porukka ja kohtuullinen hinnoittelu. Kiitos nopeasta avusta!",
-    author: "Jari H.",
-    source: "Google-arvostelu",
+    text: "Sujuvat yhteydenotot ja loistavaa asiakaspalvelua. Kaupanteko sujui arkipyhästä huolimatta. Lämpimät suositukset. Tässä liikkeessä asioi mielellään.",
+    author: "Virpi Kantomäki",
   },
   {
-    text: "Huolto tehtiin sovitusti ja minulle näytettiin mitä on tehty. Luottamus on ansaittu.",
-    author: "Sanna T.",
-    source: "Google-arvostelu",
+    text: "Erinomainen, asiantunteva ja ystävällinen!",
+    author: "Miska Vilkki",
   },
   {
-    text: "Vikakoodi selvitettiin nopeasti ja auto toimii taas täydellisesti. Asiakaspalvelu erinomaisella tasolla.",
-    author: "Petri N.",
-    source: "Google-arvostelu",
+    text: "Itse painelin yötä myöten pohjoisesta paikan päälle hakemaan autoa ja odotukseni ovat yleensä aina vähän skeptiset, mitä tulee suomalaiseen palveluun yleensä. Myyjä saapui paikalle tulevan autoni kanssa ja yhtä iloa ja hymyä oli mies ja itse vaikka väsynyt olinkin, niin sain siitä virtaa kuin mahdoton. Palvelu siis täys kymppi ja aivan mahtavia tyyppejä löytyy liikkeestä. Auton vaihto onnistui ilman mitään yskimistä.",
+    author: "Ari-Pekka Pukema",
   },
   {
-    text: "Renkaiden vaihto ja tasapainotus sujui odottamatta samana päivänä. Suosittelen lämpimästi.",
-    author: "Elina R.",
-    source: "Google-arvostelu",
+    text: "Täällä kaupat sujuivat täydellisesti. Myyjä erittäin miellyttävä ja asiat tapahtui juuri niin kuin oli sovittu. Vahva suositus Koskiautolle.",
+    author: "Teemu Stolpe",
+  },
+  {
+    text: "Erinomaista ja asiantuntevaa palvelua niin ostotilanteessa kuin pienessä jälkikäteen ilmenneessä häiriötilanteessakin. 110% suositus kaikille heidän palveluistaan.",
+    author: "Niko Tyybäkinoja",
+  },
+  {
+    text: "Vielä ei kauppoihin päästy, mutta mukava liike asioida. Varmasti vielä kaupat saadaan. Jos ei tästä kyseisestä autosta, niin tulevaisuudessa.",
+    author: "Veli Niemi",
+  },
+  {
+    text: "Asiantunteva ja osaava porukka, joka kerta hierottu molempia osapuolia miellyttävät kaupat! Autot olleet siinä kunnossa kuin on sanottu rehellisesti. Erittäin iso suositus!",
+    author: "Puinu",
   },
 ] as const;
 
-function StarRow({ className = "" }: { className?: string }) {
+function StarRow({ className = "", size = "md" }: { className?: string; size?: "sm" | "md" }) {
+  const sizeClass = size === "sm" ? "size-3.5" : "size-4";
   return (
-    <div className={["flex items-center gap-0.5 text-[var(--color-accent)]", className].join(" ")} aria-hidden="true">
+    <span
+      className={["inline-flex items-center gap-0.5 text-[var(--color-accent)]", className].join(" ")}
+      aria-hidden="true"
+    >
       {Array.from({ length: 5 }).map((_, i) => (
-        <IconStar key={i} className="size-4 shrink-0 md:size-[1.05rem]" />
+        <IconStar key={i} className={`${sizeClass} shrink-0`} />
       ))}
-    </div>
+    </span>
+  );
+}
+
+function TestimonialCard({ text, author }: { text: string; author: string }) {
+  return (
+    <article className="group relative flex h-full flex-col rounded-xl bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.05)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] md:p-10">
+      <span
+        className="pointer-events-none absolute left-5 top-2 select-none font-heading text-[7rem] font-bold leading-none text-[var(--color-foreground)] opacity-[0.05] md:left-6 md:text-[8rem]"
+        aria-hidden
+      >
+        &ldquo;
+      </span>
+
+      <StarRow className="relative z-10" />
+
+      <blockquote className="relative z-10 m-0 mt-5 flex-1">
+        <p className="text-[1.125rem] leading-[1.65] text-[var(--color-foreground)] md:text-xl md:leading-[1.7]">
+          {text}
+        </p>
+      </blockquote>
+
+      <footer className="relative z-10 mt-8 border-t border-[var(--color-border)] pt-6">
+        <p className="m-0 font-semibold text-[var(--color-foreground)]">{author}</p>
+        <p className="m-0 mt-1 flex items-center gap-1.5 text-sm text-[var(--color-muted)]">
+          <StarRow size="sm" />
+          <span>Google</span>
+        </p>
+      </footer>
+    </article>
   );
 }
 
@@ -69,25 +135,24 @@ export default function TestimonialsSection() {
     () => getSnapshot(REDUCE_MOTION_QUERY),
     getServerSnapshot,
   );
-  const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState<1 | -1>(1);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  const visibleCount = useVisibleCount();
+  const pageCount = Math.max(1, TESTIMONIALS.length - visibleCount + 1);
+  const [activePage, setActivePage] = useState(0);
 
-  const count = TESTIMONIALS.length;
-  const item = TESTIMONIALS[active];
+  useEffect(() => {
+    setActivePage((p) => Math.min(p, pageCount - 1));
+  }, [pageCount]);
 
-  const go = useCallback(
-    (dir: 1 | -1) => {
-      setDirection(dir);
-      setActive((i) => (i + dir + count) % count);
-    },
-    [count],
-  );
+  const visibleItems = TESTIMONIALS.slice(activePage, activePage + visibleCount);
 
-  const goPrev = useCallback(() => go(-1), [go]);
-  const goNext = useCallback(() => go(1), [go]);
+  const goPrev = useCallback(() => {
+    setActivePage((p) => Math.max(0, p - 1));
+  }, []);
+
+  const goNext = useCallback(() => {
+    setActivePage((p) => Math.min(pageCount - 1, p + 1));
+  }, [pageCount]);
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -97,91 +162,93 @@ export default function TestimonialsSection() {
     [goNext, goPrev],
   );
 
-  const motion = useMemo(() => {
-    if (reduceMotion) return { transition: "none", transform: "none", opacity: 1 };
-    if (!mounted) return { transition: "none", transform: "none", opacity: 1 };
-    const x = direction === 1 ? 10 : -10;
-    return {
-      transition: "opacity 420ms ease, transform 420ms ease",
-      transform: `translate3d(${x}px, 0, 0)`,
-      opacity: 1,
-    };
-  }, [direction, mounted, reduceMotion]);
+  const gridCols =
+    visibleCount === 3 ? "lg:grid-cols-3" : visibleCount === 2 ? "sm:grid-cols-2" : "grid-cols-1";
 
   return (
-    <section id="arvostelut" className="w-full bg-black" aria-label="Asiakasarvostelut">
-      <div
-        className="relative w-full overflow-hidden"
-        style={{
-          backgroundImage: "url(/assets/services/maintenance-service.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/55" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-black/75" aria-hidden />
+    <section
+      id="arvostelut"
+      className="w-full bg-[var(--color-secondary)] py-14 md:py-20"
+      aria-label="Asiakaskokemuksia"
+    >
+      <div className="mx-auto max-w-[1440px] px-5 md:px-8">
+        <header className="mx-auto max-w-3xl text-center">
+          <p className={sectionEyebrowClass}>Asiakkaiden kokemuksia</p>
+          <h2 className={sectionH2CenterClass}>Mitä asiakkaamme sanovat</h2>
+          <p className={sectionLedeCenterClass}>
+            <span className="inline-flex flex-wrap items-center justify-center gap-x-1.5 font-semibold text-[var(--color-foreground)]">
+              <StarRow size="sm" />
+              {GOOGLE_RATING} / 5
+            </span>
+            {" — "}
+            Perustuu {GOOGLE_REVIEW_COUNT} Google-arvosteluun
+          </p>
+        </header>
 
-        <div className="relative mx-auto flex max-w-[1200px] items-center justify-center px-4 py-24 text-center md:px-8 md:py-36">
-          <div className="w-full max-w-3xl" tabIndex={0} onKeyDown={onKeyDown}>
-            <StarRow className="mx-auto mb-4 justify-center text-[#f4c542]" />
-
-            <div
-              key={active}
-              className="will-change-transform"
-              style={{
-                ...motion,
-              }}
-            >
-              <p className="m-0 text-balance font-heading text-lg font-semibold leading-relaxed tracking-tight text-white sm:text-xl md:text-2xl">
-                “{item.text}”
-              </p>
-              <p className="m-0 mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
-                {item.author} <span className="mx-2 text-white/40">•</span> {item.source}
-              </p>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <button
-                type="button"
-                onClick={goPrev}
-                className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/25 text-white/90 backdrop-blur-sm transition hover:bg-black/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-                aria-label="Edellinen arvostelu"
-              >
-                <ChevronLeft className="size-5" strokeWidth={2} />
-              </button>
-
-              <div className="flex items-center justify-center gap-2" aria-label="Arvostelujen sivutus">
-                {TESTIMONIALS.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => {
-                      setDirection(i > active ? 1 : -1);
-                      setActive(i);
-                    }}
-                    className={[
-                      "h-1.5 w-6 rounded-full transition",
-                      i === active ? "bg-white/85" : "bg-white/25 hover:bg-white/40",
-                    ].join(" ")}
-                    aria-label={`Näytä arvostelu ${i + 1}`}
-                    aria-current={i === active ? "true" : undefined}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={goNext}
-                className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/25 text-white/90 backdrop-blur-sm transition hover:bg-black/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-                aria-label="Seuraava arvostelu"
-              >
-                <ChevronRight className="size-5" strokeWidth={2} />
-              </button>
-            </div>
+        <div
+          className="mt-10 md:mt-12"
+          tabIndex={0}
+          onKeyDown={onKeyDown}
+          aria-roledescription="carousel"
+          aria-label="Asiakasarvostelut"
+        >
+          <div
+            className={`grid grid-cols-1 gap-6 ${gridCols}`}
+            style={
+              reduceMotion
+                ? undefined
+                : { transition: "opacity 320ms ease" }
+            }
+          >
+            {visibleItems.map((item) => (
+              <TestimonialCard key={`${item.author}-${activePage}`} text={item.text} author={item.author} />
+            ))}
           </div>
+
+          <nav
+            className="mt-10 flex items-center justify-center gap-4"
+            aria-label="Arvostelujen sivutus"
+          >
+            <button
+              type="button"
+              onClick={goPrev}
+              disabled={activePage === 0}
+              className="grid size-9 place-items-center rounded-full text-[var(--color-foreground)] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
+              aria-label="Edellinen"
+            >
+              <ChevronLeft className="size-5" strokeWidth={1.75} />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: pageCount }).map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setActivePage(i)}
+                  className={[
+                    "rounded-full transition",
+                    i === activePage
+                      ? "size-2.5 bg-[var(--color-foreground)]"
+                      : "size-2 bg-[var(--color-muted)]/40 hover:bg-[var(--color-muted)]/60",
+                  ].join(" ")}
+                  aria-label={`Sivu ${i + 1}`}
+                  aria-current={i === activePage ? "true" : undefined}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={goNext}
+              disabled={activePage >= pageCount - 1}
+              className="grid size-9 place-items-center rounded-full text-[var(--color-foreground)] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
+              aria-label="Seuraava"
+            >
+              <ChevronRight className="size-5" strokeWidth={1.75} />
+            </button>
+          </nav>
         </div>
       </div>
     </section>
   );
 }
-

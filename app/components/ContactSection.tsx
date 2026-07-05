@@ -1,10 +1,14 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { CONTACT, OPENING_HOURS } from "../lib/contact";
 import Button from "./Button";
-import { sectionH2Class } from "../lib/sectionTypography";
+import {
+  sectionEyebrowDarkClass,
+  sectionH2Class,
+  sectionLedeDarkClass,
+} from "../lib/sectionTypography";
 
 type FormData = {
   name: string;
@@ -42,19 +46,17 @@ export default function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative overflow-hidden bg-[#1c1c1c]"
+      className="relative overflow-hidden bg-[#111111]"
     >
-      <div className="relative mx-auto max-w-[1680px] px-5 py-20 md:px-8 md:py-28">
+      <div className="relative mx-auto max-w-[1440px] px-5 py-20 md:px-8 md:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
           <div>
-            <h2
-              id="contact-heading"
-              className={`${sectionH2Class} max-w-xl text-white`}
-            >
-              Huolto ja korjaus alkavat yhteydenotolla.
+            <p className={sectionEyebrowDarkClass}>Yhteystiedot</p>
+            <h2 id="contact-heading" className={`${sectionH2Class} max-w-xl text-white`}>
+              Ota yhteyttä — autamme löytämään oikean auton.
             </h2>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-[#f5f5f5]/72 md:text-lg">
-              Ota yhteyttä tai varaa huoltoaika — kerromme arvion ja vastaamme yleensä saman työpäivän aikana.
+            <p className={sectionLedeDarkClass}>
+              Kysy autosta, pyydä vaihtotarjous tai varaa koeajo. Vastaamme yleensä saman työpäivän aikana.
             </p>
           </div>
 
@@ -80,10 +82,15 @@ export default function ContactSection() {
                   {CONTACT.emailLabel}
                 </a>
               </li>
-              <li className="text-[#f5f5f5]/72">
-                <a href={CONTACT.mapHref} className="transition-colors hover:text-white">
-                  <span className="block text-[#f5f5f5]/88">{CONTACT.addressLine1}</span>
-                  <span className="block">{CONTACT.addressLine2}</span>
+              <li>
+                <a
+                  href={CONTACT.mapHref}
+                  className="inline-flex items-center gap-2 text-[#f5f5f5]/88 transition-colors hover:text-white"
+                >
+                  <MapPin className="size-4 shrink-0 text-[#f5f5f5]/70" aria-hidden />
+                  <span>
+                    {CONTACT.addressLine1}, {CONTACT.addressLine2}
+                  </span>
                 </a>
               </li>
             </ul>
@@ -110,7 +117,7 @@ export default function ContactSection() {
 
         <div className="mt-14 md:mt-16">
           {sent ? (
-            <div className="rounded-2xl border border-white/[0.08] bg-black/45 p-8 text-center backdrop-blur-md md:p-12">
+            <div className="rounded-xl border border-white/[0.08] bg-black/45 p-8 text-center backdrop-blur-md md:p-12">
               <p className="m-0 font-heading text-xl font-semibold text-[#f5f5f5]">Kiitos viestistä!</p>
               <p className="m-0 mt-3 text-sm leading-relaxed text-[#f5f5f5]/72">
                 Tämä on demo: lomake ei lähetä tietoja minnekään. Tuotannossa kytketään sähköpostiin tai CRM:ään.
@@ -118,7 +125,7 @@ export default function ContactSection() {
               <Button
                 type="button"
                 variant="secondary"
-                className="mt-8"
+                className="mt-8 border-white text-white hover:bg-white/10"
                 onClick={() => {
                   setSent(false);
                   setForm(initialForm);
@@ -130,7 +137,7 @@ export default function ContactSection() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-white/[0.08] bg-black/45 p-6 backdrop-blur-md md:p-10 lg:p-12"
+              className="rounded-xl border border-white/[0.08] bg-black/45 p-6 backdrop-blur-md md:p-10 lg:p-12"
             >
               <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
                 <div>
@@ -193,7 +200,7 @@ export default function ContactSection() {
                     rows={4}
                     value={form.message}
                     onChange={updateField("message")}
-                    placeholder="Lyhyt kuvaus viasta tai huollosta…"
+                    placeholder="Kerro mitä etsit tai pyydä vaihtotarjous…"
                     className={`${fieldClass} min-h-[120px] resize-y`}
                   />
                 </div>

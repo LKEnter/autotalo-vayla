@@ -1,79 +1,101 @@
+import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
-import { sectionH2Class } from "../lib/sectionTypography";
+import { ArrowRight } from "lucide-react";
+import {
+  sectionEyebrowClass,
+  sectionH2Class,
+  sectionLedeClass,
+} from "../lib/sectionTypography";
 
 type Service = {
   title: string;
-  subtitle?: string;
-  icon: string; // public path
-  href?: string;
-  image: string; // public path
+  category: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  href: string;
 };
 
 const SERVICES: Service[] = [
   {
-    title: "Moottorihuolto",
-    icon: "/icons/diagnostic.svg",
-    href: "#",
-    image: "/assets/services/air-service.jpg",
+    title: "Vaihtoautot",
+    category: "Myynti",
+    description: "Yli 25 tarkastettua autoa monimuotoisiin käyttötarkoituksiin — selkeät hinnat ja nopea osto.",
+    imageSrc: "/assets/images/service-1.png",
+    imageAlt: "Vaihtoautoja myyntialueella",
+    href: "#uusimmat",
   },
   {
-    title: "Jarrujen tarkastus ja huolto",
-    icon: "/icons/brake.svg",
-    href: "#",
-    image: "/assets/services/brake-service.jpg",
+    title: "Rahoitus",
+    category: "Rahoitus",
+    description: "Joustavat maksuvaihtoehdot ja kuukausierälaskuri — pyydä tarjous ilman sitoumuksia.",
+    imageSrc: "/assets/images/service-2.png",
+    imageAlt: "Auto maisemassa",
+    href: "#rahoitus",
   },
   {
-    title: "Öljynvaihto",
-    icon: "/icons/battery.svg",
-    href: "#",
-    image: "/assets/services/diagnostic-service.jpg",
-  },
-  {
-    title: "Ilmastoinnin suorituskyky ja huolto",
-    icon: "/icons/fan.svg",
-    href: "#",
-    image: "/assets/services/suspension-service.jpg",
+    title: "Ostamme autosi",
+    category: "Vaihtohyvitys",
+    description: "Saat reilun tarjouksen nykyisestä autostasi ja voimme yhdistää vaihdon uuden auton ostoon.",
+    imageSrc: "/assets/images/service-3.png",
+    imageAlt: "Asiakas ja myyjä keskustelevat auton vaihdosta",
+    href: "#vaihto",
   },
 ];
 
 function ServiceCard({ service }: { service: Service }) {
-  const CardTag = service.href ? Link : "div";
-  const cardProps = service.href ? ({ href: service.href } as const) : ({} as const);
-
   return (
-    <CardTag
-      {...(cardProps as any)}
-      className="group relative isolate block min-h-[320px] overflow-hidden rounded-4xl bg-black shadow-none outline-none transition-transform duration-200 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/40 sm:min-h-[360px]"
+    <Link
+      href={service.href}
+      className="group relative flex min-h-[440px] flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-foreground)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2 sm:min-h-[480px]"
     >
+      <Image
+        src={service.imageSrc}
+        alt={service.imageAlt}
+        fill
+        className="object-cover transition duration-500 ease-out group-hover:scale-[1.04]"
+        sizes="(max-width: 1023px) 100vw, 33vw"
+      />
+
       <div
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.03]"
-        style={{ backgroundImage: `url(${service.image})` }}
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/55"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/30 to-black/10" aria-hidden />
-      <div className="absolute inset-0 ring-1 ring-white/10" aria-hidden />
 
-      <div className="relative flex h-full flex-col p-6">
-        <div className="flex items-center gap-3">
-          <div className="grid size-12 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/15 backdrop-blur-sm">
-            <img src={service.icon} alt="" className="size-7 invert opacity-95" />
-          </div>
-          <div className="min-w-0">
-            <p className="m-0 font-heading text-lg font-semibold uppercase leading-tight tracking-wide text-white">
-              {service.title}
-            </p>
-            {service.subtitle ? (
-              <p className="m-0 mt-1 text-sm font-semibold uppercase tracking-wide text-white/85">{service.subtitle}</p>
-            ) : null}
-          </div>
+      <span className="absolute left-5 top-5 z-10 rounded-full border border-white/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[2px]">
+        {service.category}
+      </span>
+
+      <h3 className="absolute bottom-[38%] left-5 right-5 z-10 m-0 font-heading text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-[1.75rem] lg:text-3xl">
+        {service.title}
+      </h3>
+
+      <div className="relative z-10 mt-auto">
+        <svg
+          viewBox="0 0 400 48"
+          preserveAspectRatio="none"
+          className="block h-10 w-full text-[var(--color-secondary)]"
+          aria-hidden
+        >
+          <path
+            d="M0,48 C120,8 220,52 400,20 L400,48 L0,48 Z"
+            fill="currentColor"
+          />
+        </svg>
+
+        <div className="flex items-end justify-between gap-4 bg-[var(--color-secondary)] px-5 pb-10 pt-6 sm:px-6">
+          <p className="m-0 max-w-[85%] text-sm leading-relaxed text-[var(--color-muted)]">
+            {service.description}
+          </p>
+          <span
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-[var(--color-foreground)] transition-[transform,background-color,border-color] duration-200 group-hover:translate-x-0.5 group-hover:border-[var(--color-foreground)]/20 group-hover:bg-[var(--color-accent)]"
+            aria-hidden
+          >
+            <ArrowRight className="size-4" strokeWidth={2.25} />
+          </span>
         </div>
-
-        <span className="pointer-events-none absolute bottom-[-1px] right-[-1px] inline-flex items-center rounded-tl-3xl bg-white px-10 py-5 text-base font-semibold tracking-tight text-[var(--color-foreground)] shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition-colors duration-300 group-hover:text-[var(--color-primary)]">
-          Varaa
-        </span>
       </div>
-    </CardTag>
+    </Link>
   );
 }
 
@@ -81,30 +103,30 @@ export default function ServicesSection() {
   return (
     <section id="palvelut" className="w-full bg-white py-14 md:py-20" aria-label="Palvelut">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div className="min-w-0">
-            <h2 className={sectionH2Class}>
-              Palvelut
-            </h2>
-            <p className="m-0 mt-3 max-w-3xl text-sm leading-relaxed text-[var(--color-muted)] md:text-base">
-              Huollamme ja korjaamme yleisimmät viat nopeasti ja läpinäkyvästi. Varaa aika tai pyydä arvio — vastaamme yleensä saman työpäivän aikana.
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <header className="max-w-2xl">
+            <p className={sectionEyebrowClass}>Palvelut</p>
+            <h2 className={sectionH2Class}>Kaikki yhdestä paikasta</h2>
+            <p className={sectionLedeClass}>
+              Vaihtoautot, rahoitus ja vaihtoapu — selkeät palvelut koko autokauppaan.
             </p>
-          </div>
+          </header>
 
-          <div className="flex shrink-0 flex-wrap items-center gap-3">
-            <Button href="#" variant="primary">
-              Näytä kaikki
-            </Button>
-          </div>
+          <Link
+            href="#contact"
+            className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-[var(--color-foreground)] no-underline transition-colors hover:text-[var(--color-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2"
+          >
+            Katso kaikki palvelut
+            <ArrowRight className="size-4 text-[var(--color-accent)]" strokeWidth={2.25} aria-hidden />
+          </Link>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {SERVICES.map((s) => (
-            <ServiceCard key={`${s.title}-${s.subtitle ?? ""}`} service={s} />
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-7">
+          {SERVICES.map((service) => (
+            <ServiceCard key={service.title} service={service} />
           ))}
         </div>
       </div>
     </section>
   );
 }
-

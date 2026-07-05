@@ -21,38 +21,22 @@ type ButtonAsLinkProps = CommonProps &
 export type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
 const base =
-  "cursor-pointer group relative isolate overflow-hidden inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-sm font-semibold uppercase tracking-wide no-underline select-none " +
-  "transition-[transform,box-shadow,color,border-color,opacity] duration-200 ease-out md:hover:scale-[1.02] " +
-  "will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/45 focus-visible:ring-offset-2";
+  "cursor-pointer inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold no-underline select-none " +
+  "transition-all duration-200 ease-out md:hover:scale-[1.02] " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--color-accent)] text-white shadow-[0_10px_24px_rgba(0,0,0,0.14)] " +
-    "hover:text-white hover:shadow-[0_14px_34px_rgba(0,0,0,0.18)]",
+    "bg-[var(--color-accent)] text-[var(--color-on-primary)] shadow-[0_4px_14px_rgba(0,0,0,0.08)] " +
+    "hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-on-primary)]",
   secondary:
-    "bg-white text-[var(--color-primary)] border border-black/10 shadow-[0_10px_22px_rgba(0,0,0,0.08)] " +
-    "hover:text-[var(--color-on-primary)] hover:shadow-[0_14px_34px_rgba(0,0,0,0.14)]",
+    "bg-white text-[var(--color-foreground)] border border-[var(--color-foreground)] " +
+    "hover:bg-[var(--color-secondary)]",
 };
 
 export default function Button(props: ButtonProps) {
   const { variant = "primary", className = "", children, ...rest } = props as ButtonProps;
   const classes = `${base} ${variants[variant]} ${className}`;
-  const hoverBgClass = "bg-[var(--color-primary)]";
-
-  const content = (
-    <>
-      <span
-        aria-hidden="true"
-        className={[
-          "absolute inset-0 rounded-xl",
-          hoverBgClass,
-          "-translate-x-full group-hover:translate-x-0",
-          "transition-transform duration-200 ease-out",
-        ].join(" ")}
-      />
-      <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
-    </>
-  );
 
   if ("href" in props) {
     const { href, ...linkRest } = rest as React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
@@ -61,22 +45,21 @@ export default function Button(props: ButtonProps) {
     if (isInternal) {
       return (
         <Link href={href} className={classes} {...(linkRest as any)}>
-          {content}
+          {children}
         </Link>
       );
     }
 
     return (
       <a href={href} className={classes} {...linkRest}>
-        {content}
+        {children}
       </a>
     );
   }
 
   return (
     <button className={classes} {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
-      {content}
+      {children}
     </button>
   );
 }
-
