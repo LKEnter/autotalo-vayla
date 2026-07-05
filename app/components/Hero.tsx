@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="pointer-events-none absolute inset-0 z-[1] bg-black/[0.18]" aria-hidden />
       </div>
 
-      <div className="hero-clip-left relative z-10 flex shrink-0 flex-col bg-white px-6 pb-10 pt-8 sm:px-10 md:absolute md:inset-y-0 md:left-0 md:flex-none md:h-full md:w-[58%] md:max-w-[55rem] md:justify-center md:px-14 md:pb-10 md:pt-28 lg:px-20">
+      <div className="hero-clip-left relative z-10 flex shrink-0 flex-col bg-white px-6 pb-10 pt-8 sm:px-10 md:absolute md:inset-y-0 md:left-0 md:flex-none md:h-full md:w-[58%] md:max-w-[54rem] md:justify-center md:px-10 md:pb-10 md:pt-28 2xl:px-20">
         <p className={sectionEyebrowClass}>
           Yli 25 vaihtoautoa
         </p>
