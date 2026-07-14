@@ -3,11 +3,7 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IconStar } from "./icons";
-import {
-  sectionEyebrowClass,
-  sectionH2CenterClass,
-  sectionLedeCenterClass,
-} from "../lib/sectionTypography";
+import { sectionH2CenterClass, sectionLedeCenterClass } from "../lib/sectionTypography";
 
 const REDUCE_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const LG_QUERY = "(min-width: 1024px)";
@@ -173,7 +169,6 @@ export default function TestimonialsSection() {
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <header className="mx-auto max-w-3xl text-center">
-          <p className={sectionEyebrowClass}>Asiakkaiden kokemuksia</p>
           <h2 className={sectionH2CenterClass}>Mitä asiakkaamme sanovat</h2>
           <p className={sectionLedeCenterClass}>
             <span className="inline-flex flex-wrap items-center justify-center gap-x-1.5 font-semibold text-[var(--color-foreground)]">

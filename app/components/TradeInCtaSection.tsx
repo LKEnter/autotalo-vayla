@@ -53,7 +53,7 @@ export default function TradeInCtaSection() {
 
             <Link
               href="#contact"
-              className="mt-8 inline-flex w-fit items-center justify-center rounded-full border border-[var(--color-foreground)] bg-[var(--color-foreground)] px-8 py-3.5 text-sm font-semibold text-white no-underline transition-[transform,background-color] duration-200 hover:scale-[1.02] hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-foreground)]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-accent)]"
+              className="mt-8 inline-flex w-fit items-center justify-center rounded-full border border-[var(--color-foreground)] bg-[var(--color-foreground)] px-8 py-3.5 text-sm font-semibold text-white no-underline transition-all duration-200 hover:scale-[1.02] hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-foreground)]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-accent)]"
             >
               Pyydä vaihtotarjous
               <span className="ml-1.5" aria-hidden>

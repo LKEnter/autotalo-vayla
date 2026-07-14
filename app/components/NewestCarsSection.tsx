@@ -3,11 +3,7 @@ import Link from "next/link";
 import { Gauge, Settings2 } from "lucide-react";
 import Button from "./Button";
 import { formatCarTitle, formatMileage, formatPrice, NEWEST_CARS, type CarListing } from "../lib/inventory";
-import {
-  sectionEyebrowClass,
-  sectionH2Class,
-  sectionLedeClass,
-} from "../lib/sectionTypography";
+import { sectionH2Class, sectionLedeClass } from "../lib/sectionTypography";
 
 function CarCard({ car }: { car: CarListing }) {
   const title = formatCarTitle(car);
@@ -15,7 +11,7 @@ function CarCard({ car }: { car: CarListing }) {
   return (
     <Link
       href="#"
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2"
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--color-secondary)]">
         <Image
@@ -67,7 +63,6 @@ export default function NewestCarsSection() {
     <section id="uusimmat" className="w-full bg-[var(--color-secondary)] py-14 md:py-20" aria-label="Uusimmat autot">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <header className="max-w-2xl">
-          <p className={sectionEyebrowClass}>Valikoima</p>
           <h2 className={sectionH2Class}>Tuoreimmat valikoimassa</h2>
           <p className={sectionLedeClass}>
             Tuoreimmat saapuneet vaihtoautot — selkeät hinnat, tarkistetut tiedot ja nopea kauppa.

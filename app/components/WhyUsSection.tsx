@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { CreditCard, Handshake, ShieldCheck, type LucideIcon } from "lucide-react";
-import {
-  sectionEyebrowClass,
-  sectionH2CenterClass,
-  sectionLedeCenterClass,
-} from "../lib/sectionTypography";
+import { sectionH2CenterClass, sectionLedeCenterClass } from "../lib/sectionTypography";
 
 type ValueCard = {
   title: string;
@@ -45,7 +41,7 @@ function ValueCardItem({ card }: { card: ValueCard }) {
   const Icon = card.icon;
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_4px_24px_rgba(0,0,0,0.05)]">
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white">
       <div className="relative pb-13">
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
@@ -93,7 +89,6 @@ export default function WhyUsSection() {
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <header className="mx-auto max-w-3xl text-center">
-          <p className={sectionEyebrowClass}>Palvelulupaus</p>
           <h2 className={sectionH2CenterClass}>Näin autokaupan kuuluu toimia</h2>
           <p className={sectionLedeCenterClass}>
             Reilu kaupankäynti, tarkastetut autot ja palvelu joka kantaa lupauksen mukaisesti.

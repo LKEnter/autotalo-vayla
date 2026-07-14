@@ -4,11 +4,7 @@ import { FormEvent, useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { CONTACT, OPENING_HOURS } from "../lib/contact";
 import Button from "./Button";
-import {
-  sectionEyebrowDarkClass,
-  sectionH2Class,
-  sectionLedeDarkClass,
-} from "../lib/sectionTypography";
+import { sectionH2Class, sectionLedeDarkClass } from "../lib/sectionTypography";
 
 type FormData = {
   name: string;
@@ -51,7 +47,6 @@ export default function ContactSection() {
       <div className="relative mx-auto max-w-[1440px] px-5 py-20 md:px-8 md:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
           <div>
-            <p className={sectionEyebrowDarkClass}>Yhteystiedot</p>
             <h2 id="contact-heading" className={`${sectionH2Class} max-w-xl text-white`}>
               Ota yhteyttä — autamme löytämään oikean auton.
             </h2>

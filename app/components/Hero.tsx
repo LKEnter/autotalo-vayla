@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Button from "./Button";
-import { sectionEyebrowClass } from "../lib/sectionTypography";
 
 const HERO_IMAGE_SRC =
   "/assets/images/hero.png";
@@ -29,10 +28,6 @@ export default function Hero() {
       </div>
 
       <div className="hero-clip-left relative z-10 flex shrink-0 flex-col bg-white px-6 pb-10 pt-8 sm:px-10 md:absolute md:inset-y-0 md:left-0 md:flex-none md:h-full md:w-[58%] md:max-w-[54rem] md:justify-center md:px-10 md:pb-10 md:pt-28 2xl:px-20">
-        <p className={sectionEyebrowClass}>
-          Yli 25 vaihtoautoa
-        </p>
-
         <h1 className="mb-2 mt-5 max-w-2xl font-heading text-[2.75rem] font-extrabold leading-[1.02] tracking-tight text-[var(--color-foreground)] sm:text-6xl lg:text-[4.25rem]">
           Löydä seuraava autosi — sinun tarpeeseen.
         </h1>

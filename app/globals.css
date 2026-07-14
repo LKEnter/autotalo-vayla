@@ -19,8 +19,8 @@
   --color-border: #e6e6e6;
   --color-on-primary: #111111;
   --color-background: #ffffff;
-  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-heading: var(--font-syne), "Syne", system-ui, sans-serif;
+  --font-sans: var(--font-general-sans), "General Sans", system-ui, sans-serif;
+  --font-heading: var(--font-archivo), "Archivo", system-ui, sans-serif;
 }
 
 :root {

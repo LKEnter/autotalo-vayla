@@ -1,11 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import {
-  sectionEyebrowClass,
-  sectionH2Class,
-  sectionLedeClass,
-} from "../lib/sectionTypography";
+import { sectionH2Class, sectionLedeClass } from "../lib/sectionTypography";
 
 type Service = {
   title: string;
@@ -47,7 +43,7 @@ function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={service.href}
-      className="group relative flex min-h-[440px] flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-foreground)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2 sm:min-h-[480px]"
+      className="group relative flex min-h-[440px] flex-col overflow-hidden rounded-2xl bg-[var(--color-foreground)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2 sm:min-h-[480px]"
     >
       <Image
         src={service.imageSrc}
@@ -61,10 +57,6 @@ function ServiceCard({ service }: { service: Service }) {
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/55"
         aria-hidden
       />
-
-      <span className="absolute left-5 top-5 z-10 rounded-full border border-white/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[2px]">
-        {service.category}
-      </span>
 
       <h3 className="absolute bottom-[38%] left-5 right-5 z-10 m-0 font-heading text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-[1.75rem] lg:text-3xl">
         {service.title}
@@ -105,20 +97,11 @@ export default function ServicesSection() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <header className="max-w-2xl">
-            <p className={sectionEyebrowClass}>Palvelut</p>
             <h2 className={sectionH2Class}>Kaikki yhdestä paikasta</h2>
             <p className={sectionLedeClass}>
               Vaihtoautot, rahoitus ja vaihtoapu — selkeät palvelut koko autokauppaan.
             </p>
           </header>
-
-          <Link
-            href="#contact"
-            className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-[var(--color-foreground)] no-underline transition-colors hover:text-[var(--color-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 focus-visible:ring-offset-2"
-          >
-            Katso kaikki palvelut
-            <ArrowRight className="size-4 text-[var(--color-accent)]" strokeWidth={2.25} aria-hidden />
-          </Link>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-7">
