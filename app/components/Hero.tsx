@@ -1,28 +1,28 @@
 import Image from "next/image";
 import Button from "./Button";
 
-const HERO_IMAGE_SRC =
-  "/assets/images/hero.png";
+const HERO_IMAGE_SRC = "/assets/images/hero.webp";
 
 export default function Hero() {
   return (
-    <section className="relative flex h-svh max-h-svh min-h-[100vh] w-full flex-col overflow-hidden bg-white md:block">
-      <div className="hero-clip-right relative flex-1 bg-[var(--color-secondary)] md:absolute md:inset-0 md:h-full">
+    <section className="relative flex w-full flex-col overflow-hidden bg-white md:block md:h-svh md:max-h-svh md:min-h-[100vh]">
+      {/* Mobile: capped image band (~42vh). Desktop: full-bleed split plane. */}
+      <div className="hero-clip-right relative h-[min(42vh,22rem)] shrink-0 overflow-hidden bg-[var(--color-secondary)] sm:h-[min(46vh,26rem)] md:absolute md:inset-0 md:h-full md:max-h-none">
         <div className="absolute inset-0">
           <Image
             src={HERO_IMAGE_SRC}
             alt="Autoliikkeen piha täynnä vaihtoautoja auringonlaskussa"
             fill
-            className="object-cover"
+            className="object-cover object-[70%_center] md:object-center"
             sizes="(max-width: 767px) 100vw, 55vw"
-            quality={75}
+            quality={70}
             priority
             fetchPriority="high"
           />
         </div>
 
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 bg-gradient-to-b from-black/45 to-transparent md:h-36"
+          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-24 bg-gradient-to-b from-black/45 to-transparent md:h-36"
           aria-hidden
         />
         <div className="pointer-events-none absolute inset-0 z-[1] bg-black/[0.18]" aria-hidden />
@@ -34,7 +34,8 @@ export default function Hero() {
         </h1>
 
         <p className="mb-2 mt-7 max-w-xl font-heading text-lg font-medium leading-relaxed text-gray-500 sm:text-xl">
-         Monimuotoisia vaihtoehtoja eri hintaluokissa. Henkilöautoista urheiluautoihin, katumaastureista hyötyajoneuvoihin – reilu palvelu alusta loppuun.
+          Monimuotoisia vaihtoehtoja eri hintaluokissa. Henkilöautoista urheiluautoihin, katumaastureista
+          hyötyajoneuvoihin – reilu palvelu alusta loppuun.
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
