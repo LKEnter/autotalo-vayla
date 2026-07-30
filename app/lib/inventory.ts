@@ -27,7 +27,7 @@ export const NEWEST_CARS: CarListing[] = [
     fuel: "Bensiini",
     price: 74_900,
     imageSrc: "/assets/images/cars/bmw-m5.webp",
-    imageAlt: "Harmaa BMW M5 Competition liikenteessä",
+    imageAlt: "BMW M5 Competition liikenteessä",
   },
   {
     id: "demo-1002",
