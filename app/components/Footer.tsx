@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="max-w-sm">
             <Logo onDark />
             <p className="m-0 mt-4 text-sm leading-relaxed">
-              Vaihtoautot, rahoitus ja vaihtoapu — selkeästi ja luotettavasti Valkeakoskella.
+              Vaihtoautot, rahoitus ja vaihtoapu — selkeästi ja luotettavasti Helsingissä.
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-white/[0.08] pt-6 text-xs text-[#f5f5f5]/50 sm:flex-row sm:items-center sm:justify-between">
-          <p className="m-0">© {year} Koskiauto. Kaikki oikeudet pidätetään.</p>
+          <p className="m-0">© {year} Autotalo Väylä. Kaikki oikeudet pidätetään.</p>
         </div>
       </div>
     </footer>

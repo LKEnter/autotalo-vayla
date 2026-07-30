@@ -15,8 +15,8 @@ export type CarListing = {
 
 export const NEWEST_CARS: CarListing[] = [
   {
-    id: "15840713",
-    listingId: "15840713",
+    id: "demo-1001",
+    listingId: "demo-1001",
     year: 2015,
     make: "BMW",
     model: "520",
@@ -29,8 +29,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "BMW 520 sininen sedan ulkopuistossa",
   },
   {
-    id: "15839178",
-    listingId: "15839178",
+    id: "demo-1002",
+    listingId: "demo-1002",
     year: 2017,
     make: "Mercedes-Benz",
     model: "C",
@@ -43,8 +43,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "Mercedes-Benz C punainen cabriolet",
   },
   {
-    id: "15833458",
-    listingId: "15833458",
+    id: "demo-1003",
+    listingId: "demo-1003",
     year: 2025,
     make: "Audi",
     model: "RS Q8",
@@ -57,8 +57,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "Audi RS Q8 harmaa SUV",
   },
   {
-    id: "15829239",
-    listingId: "15829239",
+    id: "demo-1004",
+    listingId: "demo-1004",
     year: 2023,
     make: "Renault",
     model: "Trafic",
@@ -71,8 +71,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "Renault Trafic valkoinen pakettiauto",
   },
   {
-    id: "15827059",
-    listingId: "15827059",
+    id: "demo-1005",
+    listingId: "demo-1005",
     year: 2014,
     make: "Mercedes-Benz",
     model: "CLA 45 AMG",
@@ -85,8 +85,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "Mercedes-Benz CLA 45 AMG valkoinen coupe",
   },
   {
-    id: "15809303",
-    listingId: "15809303",
+    id: "demo-1006",
+    listingId: "demo-1006",
     year: 2017,
     make: "BMW",
     model: "740",
@@ -99,8 +99,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "BMW 740 harmaa hybridisedan",
   },
   {
-    id: "15791103",
-    listingId: "15791103",
+    id: "demo-1007",
+    listingId: "demo-1007",
     year: 2016,
     make: "Volvo",
     model: "XC90",
@@ -113,8 +113,8 @@ export const NEWEST_CARS: CarListing[] = [
     imageAlt: "Volvo XC90 valkoinen SUV",
   },
   {
-    id: "15763039",
-    listingId: "15763039",
+    id: "demo-1008",
+    listingId: "demo-1008",
     year: 2025,
     make: "Mercedes-Benz",
     model: "GLS",

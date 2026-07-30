@@ -13,7 +13,7 @@ import ContactSection from "./components/ContactSection";
 
 export const generateMetadata = () =>
   generateMorfoosSEO({
-    title: "Koskiauto | Vaihtoautot ja autokauppa",
+    title: "Autotalo Väylä | Vaihtoautot ja autokauppa",
     description:
       "Yli 150 vaihtoautoa samasta paikasta. Selkeät hinnat, vaihtoapu ja rahoitus. Tutustu valikoimaan ja pyydä vaihtotarjous.",
     path: "/",
@@ -24,13 +24,13 @@ export default function Page() {
   return (
     <main className="w-full">
       <LocalBusinessSchema
-        name="Koskiauto"
-        phone="+358400861500"
-        email="myynti@koskiauto.fi"
+        name="Autotalo Väylä"
+        phone="+358400000002"
+        email="info@autotalo-vayla.fi"
         address={{
-          streetAddress: "Sammonkatu 6",
-          addressLocality: "Valkeakoski",
-          postalCode: "37600",
+          streetAddress: "Esimerkkikatu 1",
+          addressLocality: "Helsinki",
+          postalCode: "00100",
           addressCountry: "FI",
         }}
       />

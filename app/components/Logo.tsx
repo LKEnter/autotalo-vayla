@@ -25,7 +25,7 @@ export default function Logo({
     >
       <Image
         src={LOGO_SRC}
-        alt="Koskiauto"
+        alt="Autotalo Väylä"
         width={160}
         height={29}
         sizes="160px"

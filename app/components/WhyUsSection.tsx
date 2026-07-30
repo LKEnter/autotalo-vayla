@@ -85,7 +85,7 @@ export default function WhyUsSection() {
     <section
       id="edut"
       className="w-full bg-[var(--color-secondary)] py-14 md:py-20"
-      aria-label="Miksi valita Koskiauto"
+      aria-label="Miksi valita Autotalo Väylä"
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <header className="mx-auto max-w-3xl text-center">

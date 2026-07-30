@@ -45,40 +45,40 @@ const GOOGLE_REVIEW_COUNT = 27;
 
 const TESTIMONIALS = [
   {
-    text: "Suosittelen kaikille Valkeakosken Koskiautoa, jos on autokaupoille asiaa. Asiakaspalvelu oli maanläheistä ja kaikin puolin loistavaa. Itse tuote eli ostamani auto vastasi täysin netissä ilmoitettuja tietoja ja auton hinta/rahoitus autoon tuli edulliseksi. Hinta/laatu-suhde on tässä liikkeessä asiakasystävällinen!",
-    author: "Sami Koski",
+    text: "Suosittelen kaikille Helsingin Autotalo Väylää, jos on autokaupoille asiaa. Asiakaspalvelu oli maanläheistä ja kaikin puolin loistavaa. Itse tuote eli ostamani auto vastasi täysin netissä ilmoitettuja tietoja ja auton hinta/rahoitus autoon tuli edulliseksi. Hinta/laatu-suhde on tässä liikkeessä asiakasystävällinen!",
+    author: "Matti Virtanen",
   },
   {
     text: "Omasta kokemuksesta voin kertoa, että asiat sujuivat niin hyvin ja nopeasti aivan kuten oltiin puhelimessa sovittu! Iloinen ja asiantunteva henkilökunta!",
-    author: "Jari Salonen",
+    author: "Jari Nieminen",
   },
   {
     text: "Sujuvat yhteydenotot ja loistavaa asiakaspalvelua. Kaupanteko sujui arkipyhästä huolimatta. Lämpimät suositukset. Tässä liikkeessä asioi mielellään.",
-    author: "Virpi Kantomäki",
+    author: "Laura Heikkinen",
   },
   {
     text: "Erinomainen, asiantunteva ja ystävällinen!",
-    author: "Miska Vilkki",
+    author: "Mikko Laine",
   },
   {
     text: "Itse painelin yötä myöten pohjoisesta paikan päälle hakemaan autoa ja odotukseni ovat yleensä aina vähän skeptiset, mitä tulee suomalaiseen palveluun yleensä. Myyjä saapui paikalle tulevan autoni kanssa ja yhtä iloa ja hymyä oli mies ja itse vaikka väsynyt olinkin, niin sain siitä virtaa kuin mahdoton. Palvelu siis täys kymppi ja aivan mahtavia tyyppejä löytyy liikkeestä. Auton vaihto onnistui ilman mitään yskimistä.",
-    author: "Ari-Pekka Pukema",
+    author: "Antti Korhonen",
   },
   {
-    text: "Täällä kaupat sujuivat täydellisesti. Myyjä erittäin miellyttävä ja asiat tapahtui juuri niin kuin oli sovittu. Vahva suositus Koskiautolle.",
-    author: "Teemu Stolpe",
+    text: "Täällä kaupat sujuivat täydellisesti. Myyjä erittäin miellyttävä ja asiat tapahtui juuri niin kuin oli sovittu. Vahva suositus Autotalo Väylälle.",
+    author: "Tero Mäkinen",
   },
   {
     text: "Erinomaista ja asiantuntevaa palvelua niin ostotilanteessa kuin pienessä jälkikäteen ilmenneessä häiriötilanteessakin. 110% suositus kaikille heidän palveluistaan.",
-    author: "Niko Tyybäkinoja",
+    author: "Nina Rantanen",
   },
   {
     text: "Vielä ei kauppoihin päästy, mutta mukava liike asioida. Varmasti vielä kaupat saadaan. Jos ei tästä kyseisestä autosta, niin tulevaisuudessa.",
-    author: "Veli Niemi",
+    author: "Ville Saarinen",
   },
   {
     text: "Asiantunteva ja osaava porukka, joka kerta hierottu molempia osapuolia miellyttävät kaupat! Autot olleet siinä kunnossa kuin on sanottu rehellisesti. Erittäin iso suositus!",
-    author: "Puinu",
+    author: "Demoasiakas",
   },
 ] as const;
 

@@ -14,12 +14,12 @@ const DEALERSHIP_IMAGE = "/assets/images/why-us.png";
 
 export default function TrustNumbersSection() {
   return (
-    <section id="meista" className="w-full bg-white py-14 md:py-20" aria-label="Miksi Koskiauto">
+    <section id="meista" className="w-full bg-white py-14 md:py-20" aria-label="Miksi Autotalo Väylä">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <header className="mx-auto max-w-3xl text-center">
-          <h2 className={sectionH2CenterClass}>Miksi Koskiauto</h2>
+          <h2 className={sectionH2CenterClass}>Miksi Autotalo Väylä</h2>
           <p className={sectionLedeCenterClass}>
-            Luotettava vaihtoautoliike Valkeakoskella — selkeät hinnat, reilu vaihto ja henkilökohtainen
+            Luotettava vaihtoautoliike Helsingissä — selkeät hinnat, reilu vaihto ja henkilökohtainen
             palvelu samasta osoitteesta.
           </p>
         </header>
@@ -46,7 +46,7 @@ export default function TrustNumbersSection() {
           <div className="relative min-h-[280px] overflow-hidden rounded-2xl bg-[var(--color-secondary)] shadow-[0_8px_32px_rgba(0,0,0,0.08)] sm:min-h-[360px] lg:min-h-[480px] xl:min-h-[520px]">
             <Image
               src={DEALERSHIP_IMAGE}
-              alt="Koskiauton liike ja vaihtoautot myyntitilassa"
+              alt="Autotalo Väylän myyntitila ja vaihtoautot"
               fill
               className="object-cover"
               sizes="(max-width: 1023px) 100vw, 58vw"
@@ -57,4 +57,4 @@ export default function TrustNumbersSection() {
     </section>
   );
 }
-
+
