@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1440px] px-5 py-12 md:px-8 md:py-14">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
-            <Logo />
+            <Logo onDark />
             <p className="m-0 mt-4 text-sm leading-relaxed">
               Vaihtoautot, rahoitus ja vaihtoapu — selkeästi ja luotettavasti Valkeakoskella.
             </p>

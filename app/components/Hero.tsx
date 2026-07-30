@@ -8,15 +8,16 @@ export default function Hero() {
   return (
     <section className="relative flex h-svh max-h-svh min-h-[100vh] w-full flex-col overflow-hidden bg-white md:block">
       <div className="hero-clip-right relative flex-1 bg-[var(--color-secondary)] md:absolute md:inset-0 md:h-full">
-        <div className="absolute inset-0" aria-hidden>
+        <div className="absolute inset-0">
           <Image
             src={HERO_IMAGE_SRC}
             alt="Autoliikkeen piha täynnä vaihtoautoja auringonlaskussa"
             fill
             className="object-cover"
-            sizes="100vw"
-            quality={92}
+            sizes="(max-width: 767px) 100vw, 55vw"
+            quality={75}
             priority
+            fetchPriority="high"
           />
         </div>
 

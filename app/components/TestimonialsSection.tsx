@@ -214,21 +214,26 @@ export default function TestimonialsSection() {
               <ChevronLeft className="size-5" strokeWidth={1.75} />
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               {Array.from({ length: pageCount }).map((_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setActivePage(i)}
-                  className={[
-                    "rounded-full transition",
-                    i === activePage
-                      ? "size-2.5 bg-[var(--color-foreground)]"
-                      : "size-2 bg-[var(--color-muted)]/40 hover:bg-[var(--color-muted)]/60",
-                  ].join(" ")}
+                  className="grid size-11 place-items-center rounded-full transition hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
                   aria-label={`Sivu ${i + 1}`}
                   aria-current={i === activePage ? "true" : undefined}
-                />
+                >
+                  <span
+                    className={[
+                      "rounded-full transition",
+                      i === activePage
+                        ? "size-2.5 bg-[var(--color-foreground)]"
+                        : "size-2 bg-[var(--color-muted)]/40",
+                    ].join(" ")}
+                    aria-hidden
+                  />
+                </button>
               ))}
             </div>
 

@@ -20,6 +20,7 @@ function CarCard({ car }: { car: CarListing }) {
           fill
           className="object-cover transition duration-500 ease-out group-hover:scale-[1.03]"
           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
+          quality={70}
         />
         <span className="absolute left-3 top-3 rounded-md bg-[var(--color-accent)] px-2.5 py-1 text-xs font-bold text-[var(--color-on-primary)]">
           {car.year}
